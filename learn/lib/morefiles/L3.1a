@@ -1,0 +1,45 @@
+#print
+For some of the next exercises, you will need to use the more command.
+This works like cat, but it displays its results one screenful at a
+time.  To see the next part of the file, type a single space (WITHOUT
+typing the return key).  If you want to stop the display, type a
+single "q" (for quit).
+
+I've created a long file.  Find out its name and then display it with
+more.  When you have finished, type "ready".
+#create longfile
+
+
+
+
+
+
+
+
+This file contains more lines than will fit on the screen.
+
+
+This is the first part.
+
+
+
+To see the next part, type a single space (without hitting the
+return key).
+
+
+
+
+
+
+
+
+This is the end of the file.  More is finished and you should now
+see a prompt.  Type "ready" to continue.
+
+
+#copyin
+#user
+#uncopyin
+#match more longfile
+#next
+3.1aa 10

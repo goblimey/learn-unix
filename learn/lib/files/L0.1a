@@ -1,0 +1,30 @@
+#print
+This course will help you learn about basic file handling commands.
+
+You should first understand the special characters ERASE and KILL: 
+
+  ERASE cancels the previous character typed;
+  KILL cancels the line being typed.
+
+ERASE and KILL are mapped to two non-text keyboard characters.  ERASE
+is usually the DEL (or DELETE) key, or ^H (which means hold down the
+CTRL or Control key WHILE you type the letter h).
+
+KILL is often mapped to ^U (CTRL and u).
+
+Experiment and find out how to erase the last character and kill the
+current line of text.  You can find out for sure by typing
+
+	stty -a
+
+at the prompt (followed by RETURN). It displys a lot of information
+including what to type to get an ERASE and a KILL.  "kill = ^U" means
+that to kill what you have typed so far, type CTRL and u.
+
+Try the stty command and type "ready" (without the quotes) when you've finished.
+#copyin
+#user
+#uncopyin
+#log
+#next
+0.1aa 5

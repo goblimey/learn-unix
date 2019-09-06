@@ -1,0 +1,16 @@
+#print
+Use the "ls" command to determine if there is a file in the current
+directory with the same name as one of the states of the USA.
+Find out and type "yes" or "no".
+
+(Don't use the ls list you got earlier - I've changed things.)
+#create texas
+dallas, houston, etc.
+#copyin
+#user
+#uncopyin
+#match yes
+#log
+#next
+2.1a  10
+2.2a  5

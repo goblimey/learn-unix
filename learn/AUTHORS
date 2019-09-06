@@ -1,0 +1,23 @@
+Mike Lesk of AT&T Bell Laboratories wrote the original version and
+the lessons.  It was distributed as part of version 7 UNIX, the 1978
+vintage.
+
+The OpenBSD team (www.openBSD.org) reworked the software for that
+version of UNIX.
+
+The software then languished in the OpenBSD archive for several years.
+in that time, the C language evolved and it became impossible to build
+the software using up to date tools.
+
+Various versions of UNIX appeared which did not include the learn
+software.  In 1991 Finnish student Linus Torvalds released Linux, a
+free and open source version of the UNIX kernel.  This, combined with
+the already available GNU tools produced GNU Linux, a free version of
+UNIX.  Linux became extremely popular and is a key component of cloud
+computing.  By default, Linux does not include the learn software.
+
+In 2002, Simon Ritchie fixed the software so it would build and run,
+bought it under the control of the GNU build tools so that it could be
+installed on Linux and other UNIX systems.  He also updated the
+lessons in the "files" and "morefiles" courses.  In 2019 he reworked
+the build process so that learn could be built and run by docker.

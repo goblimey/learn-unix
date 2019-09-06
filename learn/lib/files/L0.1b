@@ -1,0 +1,43 @@
+#print
+This course will help you learn about basic UNIX file handling commands.
+
+It's a series of lessons.  Each lesson gives you some instructions and an
+exercise to do.  When you have finished the exercise, you need to tell learn
+that you are done.  It marks the exercise and moves on to the next one.
+
+Some exercises end when you type "ready" (without the quotes).  Learn looks
+at what you did and checks that it's correct.
+
+When UNIX types a "$" at you, you can type a command.  For example, if you
+type "date" the computer will tell you the current date and time.  You must 
+press the RETURN key (sometimes called the Enter key) at the end of each
+command line.
+
+The date command will only give the correct date and time if your computer's
+internal clock is set correctly, and it will use the UTC timezone 
+(approximately Greenwich Mean Time).
+
+If you see "$" and type "who", UNIX will tell you who is logged on at
+present.  You are logged in as the user "learner", and you may be the only
+user logged in.
+
+There are many other commands, too.  
+
+Try the "date" command now: find out what date it is, and after the
+computer has responded, type "ready".  Don't forget the RETURN!
+#copyin
+#user
+#uncopyin
+grep date .copy >/dev/null
+#bad day
+You were supposed to type "date" (without quotes).
+The computer is very intolerant of spelling errors.
+Try again.
+#bad "date"
+Don't type those quote marks. Try again.
+#bad time
+The time command does not tell you the wall-clock time.
+Try date next time.
+#log
+#next
+0.1c 5

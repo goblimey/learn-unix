@@ -1,0 +1,185 @@
+.Dd 22 March 2002
+.Dt LEARN 1
+.Sh NAME
+.Nm learn
+.Nd computer based learning
+.Sh SYNOPSIS
+.Nm learn
+.Op Fl directory
+.Op course
+.Nm learn
+.Op Fl directory
+course
+.Op lesson
+.Nm learn
+.Op Fl directory
+course
+lesson
+.Op speed
+.Sh INTRODUCTION
+.Nm Learn
+is a Computer-based Training package that teaches the basics of UNIX.
+It offers a series of courses,
+currently:
+.Pp
+files
+.br
+morefiles
+.br
+editor
+.br
+eqn
+.br
+macros
+.Pp
+The courses
+were written
+in the early days of UNIX and some are
+no longer relevant to most users.
+The most relevant are files and morefiles.
+.Pp
+To start a CBT session,
+you can simply type:
+.Pp
+learn
+.Pp
+and it will tell you what to do,
+or you can choose a particular course:
+.Pp
+learn files
+.Pp
+People who are new to UNIX
+may get into difficulties
+due to simple misunderstandings:
+the use of the return key and so on.
+If
+.Nm learn
+is the first command they run,
+it helps if there is somebody on hand
+who has used UNIX before. 
+.Pp
+During a lesson,
+.Nm learn
+describes an exercise you should do
+and then gives control of the
+terminal back to you,
+so that you can run some UNIX
+commands.
+The lesson ends when you type "answer" followed by your suggested answer
+to a question, "yes", "no", "ready" or "bye".
+.Nm Learn
+scores the exercise,
+either by looking at your response
+or by examining the commands that you typed
+and the results.
+If
+.Nm learn
+is checking
+that you typed a specific command,
+it can be fooled if you did not issue the command exactly as it expects.
+.Pp
+If you give the wrong answer,
+.Nm learn
+asks you if you want to try again or give up,
+BUT it doesn't display the question
+again.
+If you get completely lost,
+give up and carry on to the next question.
+.Pp
+If you cannot figure out the answer that
+.Nm learn
+is looking for,
+this may be because
+it is in the wrong.
+(It may have got confused due to some unforseen problem.)
+Give it your "wrong" answer,
+and when
+it asks if you want to try again,
+give up and move on.
+.Pp
+A course can contain a small number of
+exercises for learners who are making good progress
+and a larger number of simpler exercises
+for learners whose progress is not so good.
+If you consistently get the answers right,
+you will progress at higher speed.
+.Pp
+At the end of each lesson
+.Nm learn
+displays whether you got the answer right or not.
+It also gives the name of the lesson
+and a measure of your speed of progress
+in parentheses.
+Something like this:
+.Pp
+Good.  Lesson 1.3a (6)
+.Pp
+If you end an exercise with the answer "bye",
+.Nm learn
+stops.
+If you make a note of the last question you answered,
+you can come back later and
+continue from where you left off.
+If you also give your last speed value,
+.Nm learn
+will present the material appropriately:
+.Pp
+learn files 1.3b 6
+.Pp
+(Give it the name of the LAST lesson, not the NEXT lesson,
+and do not put parentheses around the speed!)
+.Pp
+You can make
+.Nm learn
+run a course which is not stored in the
+default directory:
+.Pp
+learn -/home/simon/learn/vi
+.Pp
+If you want to keep a record of your learn session,
+run it within the
+.Xr script 1
+command.
+.Pp
+At the end of each lesson,
+learn decides which to run next.
+If
+.Nm lesson
+is "-",
+.Nm learn
+prompts for the name of the next
+lesson instead of making its own decision.
+This is useful when debugging your own lesson scripts.
+.Pp
+Each
+.Nm learn
+session runs in a separate
+"playpen" directory in /tmp.
+These are usually removed on exit,
+but occasionally,
+they get left,
+gradually leaking space.
+The system administrator
+may wish to look out for playpen directories
+that have not been written for many hours.
+.Sh FILES
+(The directories shown are the defaults.
+On your system,
+the material may be somewhere else.)
+
+.Bl -tag -width "/usr/local/libexec/tee.learn" -compact
+.It Pa /usr/local/share/learn/*
+course directories (contain lesson scripts)
+.It Pa /tmp/learn.playpen.*
+playpen directory created for each invocation, removed at end of run
+.It Pa /usr/local/libexec/tee.learn
+helper program called by learn command
+.It Pa /usr/local/libexec/lcount
+helper program called by some lesson scripts
+.El
+.Sh SEE ALSO
+.Xr script 1
+.br
+Learn \- Computer-Aided Instruction on UNIX,
+(Second Edition), Brian W. Kernighan and Michael E. Lesk.
+January 30, 1979

@@ -1,0 +1,19 @@
+#print
+You can combine the optional arguments to "ls"; for example
+you can get the "long" list sorted by time of last change
+by saying
+  ls -lt
+Try that, then type "ready".
+#create X1
+stuff
+#create X2
+stuff
+#create X3
+stuff
+#copyin
+#user
+#uncopyin
+#match ls -lt
+#log
+#next
+0.1g 10

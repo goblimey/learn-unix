@@ -1,0 +1,45 @@
+Fri Sep 25 19:31:00 MDT 1998 ian
+Split L0.1a into two so each fits in a normal 24x80 xterm.
+Removed @ and #, replacing with geneirc ERASE and KILL.
+
+Tue Mar 12 04:50:53 EST 2002 Simon Ritchie (www.merrowinternet.com)
+
+updated software: fixed missing mkdtemp();  clear playpen at the start
+of each lesson (results analysis used to break occasionally because of
+files left over from previous lessons).
+
+Updated preambles to files and morefiles - original said they were out of
+date.
+
+Changed "print" to "display" where necessary throughout files and morefiles
+lessons - original material used print for display because written in the
+days of teletypes!
+
+Removed all use of backspace and underline for emphasis in files and
+morefiles.  Doesn't work nowadays.
+
+Rewrote all examples in files and morefiles which used "named for" instead
+of "named after".  Colloquialism confuses readers not familiar with american
+usage.
+
+files: L0.1a Removed first line from L0.1a (read "$ more L0.1a", suspect it
+got corrupted somewhere).  Updated to suggest "stty -a" instead of "stty".
+Reformatted and clarified the text.
+
+morefiles: L0.1b said that total in ls listing was amount of space used
+by files.  Changed to "number of files".
+
+morefiles: L0.1f didn't create any files.  Doesn't work now that playpen
+cleared after each lesson.  Now creates files.
+
+morefiles: L3.1a split into two file L3.1a and L3.1aa.  The first explains
+the use of "more" which is now needed for some of the exercises.  (Results
+are too big for the screen.)
+
+morefiles: L1.1c changed backspace to tab.  Would cause problems if
+the  character delete sequence was set to backspace.  (Tab would cause
+problems if learn used the bash shell, but it uses /bin/sh.)
+
+morefiles: L6.1a clarified question - want to combine the files and
+get the last fifteen lines, NOT take the last 15 lines of each and
+combine.

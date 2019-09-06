@@ -1,0 +1,33 @@
+#print
+During these lessons, you can always experiment with commands when you
+see the prompt (a "$" sign).
+
+We just saw how to use "stty" to show the ERASE and KILL characters.  If
+you make a typing mistake, you can use these characters to correct it
+before you finish the line and the computer won't ever know about it.  For
+example, what will the computer really receive if you type
+
+    st<ERASE>he<KILL>
+    thf<ERASE>e<RETURN>
+
+at it?  If you are not sure, try some experiments.  When you have finished,
+type 
+
+    answer WORD
+
+where WORD is the word as it will be interpreted.  For example, if you
+think it will get 'dog', type
+
+    answer dog
+
+Don't forget to leave a space between "answer" and the word and to hit
+RETURN at the end of the line.
+#copyin
+#user
+#uncopyin
+#match the
+#bad answerthe
+Leave a space between "answer" and "the".
+#log
+#next
+0.1b 5
