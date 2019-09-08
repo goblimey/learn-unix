@@ -79,7 +79,7 @@ Doing that is is explained
 along with all sort of other BIOS changes that you can make.
 That explanation is very clear,
 but I found that ithe route through the Windows menus is now a bit different
-and so is the route through the BIOS.
+and so is the route through the BIOSi on my machine.
 The virtualization option was in a different menu and it had a different name.
 
 The other problem was that the process is a bit complicated and
