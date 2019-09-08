@@ -1,4 +1,4 @@
-# learn-unix a Docker Version of the UNIX Learn CBT package
+# A Docker Version of the UNIX Learn CBT package
 
 Learn is a Computer-Based Teaching tool that gives basic training
 in using UNIX and Linux.
@@ -19,16 +19,12 @@ learn has proved to be extremely valuable
 because it teaches the student by getting her to use real UNIX
 commands on a real UNIX system.
 
-Learn offers a number of courses, including Files and More Files.
-With good progress,image
+Learn offers a number of courses,
+the most useful being Files and More Files.
+With good progress,
 it should be possible to get through both of those in one day,
 but it would probably be better done
 in a series of short sessions.
-
-The files and More Files courses are the most useful.
-The others cover software that has mostly fallen out of use.
-For example, the course on editing files
-explains how to use a command line editor.
 
 The learn software was aimed at an American audience,
 colleagues at Bell labs in the nineteen seventies.
@@ -54,17 +50,48 @@ Nobody's watching you.
 
 You can run learn on any laptop or desktop computer -
 a Windows PC, a Mac or whatever.
-(I don't think it will run on a tablet.)
-You need to install two pieces of support software, but apart from that,
-the sequence is similar whatever you use.
-Since most people use Windows,
-I will show how to run it in that environment.
+I don't think it will run on a tablet.
+You need to install two pieces of support software first, 
+and the way you do that is different on each system.
+Once you've done that,
+the process is the same whatever you use.
+Since most people use Microsoft Windows,
+These instructions show how to run it in that environment.
 
-You need to install docker.
-Under Windows 10,
-do that as described [here](https://runnable.com/docker/install-docker-on-windows-10).
+## Installation
+You need to install git and docker.
+Installing docker can be the most difficult part,
+but both git and docker are very useful for other purposes,
+so it's worth the effort.
 
-Install [git for windows](https://git-for-windows.github.io/).
+To install git under Windows use [git for windows](https://git-for-windows.github.io/).
+
+If you're using Windows 10 Pro or Windows Enterprise,
+installing docker is fairly easy.
+Follow
+[these instructions](https://runnable.com/docker/install-docker-on-windows-10).
+
+If you're using Windows 10 home,
+installing docker is a bit more difficult.
+First, you need to enter your computer's BIOS and enable virtualization.
+Doing that is is explained
+[here](https://www.laptopmag.com/articles/access-bios-windows-10),
+along with all sort of other BIOS changes that you can make.
+That explanation is very clear,
+but I found that ithe route through the Windows menus is now a bit different
+and so is the route through the BIOS.
+The virtualization option was in a different menu and it had a different name.
+
+The other problem was that the process is a bit complicated and
+once you are in the BIOS, you can't read web pages,
+so you have to note down what to do before you start.
+
+Once you've managed that,
+you need to download the docker toolbox
+using the git command that you installed earlier.
+That's described [here](https://medium.com/@mbyfieldcameron/docker-on-windows-10-home-edition-c186c538dff3).
+
+Once you have git and docker, it gets easier.
 
 Go to your start menu and run Git Bash. That starts a command window.
 
