@@ -79,7 +79,7 @@ Doing that is is explained
 along with all sort of other BIOS changes that you can make.
 That explanation is very clear,
 but I found that ithe route through the Windows menus is now a bit different
-and so is the route through the BIOSi on my machine.
+and so is the route through the BIOS on my machine.
 The virtualization option was in a different menu and it had a different name.
 
 The other problem was that the process is a bit complicated and
@@ -101,6 +101,21 @@ The command runs.
 When it finishes,
 you get another prompt.
 
+Some of the commands you need to type are a bit long and complicated
+and you have to get them exactly right.
+You may want to copy them from here
+and paste them into your command window.
+You can do that,
+but the usual Windows shortcuts ctrl/c and ctrl/v do not work.
+(ctrl/c aborts the current command, so avoid typing that
+unless you mean to.)
+To paste text into a command window,
+right click on the window
+and a small menu appears with a Paste option.
+To copy text from the command window,
+highlight it wih the mouse,
+right click and use the Copy option.
+
 Type these commands in your command window.
 Press the enter key to run the command and
 wait for it to finish before you type the next one:
@@ -109,21 +124,26 @@ wait for it to finish before you type the next one:
     
     cd learn-unix
     
-    docker build .
+    docker build . -t unixlearn
+    
 
 That last command will take a few minutes.
 It will produce output showing what it's doing.
 If all goes well, the last line should be something like:
 
     Successfully built 68b1841290ef
+    Successfully tagged unixlearn:latest
     
-which means that it's built a docker image with ID 68b1841290ef.
+The first of those lines means that docker has built an image with ID 68b1841290ef.
 You get a different image ID each time you run this command.
 (You should only have to run it once.)
 
+The second line says that the image is tagged with the name "unixlearn".
+You can refer to it by this name rather than the image name.
+
 Run the image like so:
 
-    docker run -it --entrypoint=/bin/bash 6b9a7da1af64
+    docker run -it --entrypoint=/bin/bash unixlearn
 
 which produces a prompt like this:
 
