@@ -182,7 +182,7 @@ When you end the docker session,
 all the files that you created in it are tidied away.
 Unfortunately, learn also forgets how far you got.
 That's why you need to keep a note of your last lesson number.
-When learn satrts,
+When learn starts,
 it invites you to give it a lesson number
 and continues from that point.
 
