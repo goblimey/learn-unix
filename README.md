@@ -236,7 +236,7 @@ but only to people who wish to create and update UNIX man pages.
 The Eqn course covers a typesetting tool that is still used,
 but the subject is somewhat of a niche.
 
-## A brief History of Learn
+## A Brief History of Learn
 The learn software was originally included in version 7 UNIX
 which was released in 1978.
 I and many other people used it in the eighties to learn the basics of UNIX.
