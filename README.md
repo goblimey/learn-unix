@@ -129,7 +129,7 @@ wait for it to finish before you type the next one:
 
 That last command will take a few minutes.
 It will produce output showing what it's doing.
-If all goes well, the last line should be something like:
+If all goes well, the last two lines should be something like:
 
     Successfully built 68b1841290ef
     Successfully tagged unixlearn:latest
@@ -145,11 +145,13 @@ Run the image like so:
 
     docker run -it --entrypoint=/bin/bash unixlearn
 
-which produces a prompt like this:
+which starts the docker image running within a container
+and produces a prompt like this:
 
     learner@79c33cdc14ac:/learn$
     
-The Docker is running the image and a user called "learner" is logged in.
+Within the Docker session a user called "learner" is logged in.
+You will use that user to run learn.
 The system is prompting for a command.  Run this command:
 
     learn files
@@ -164,10 +166,8 @@ and you will see this:
 Press the Return key (which is sometimes labelled Enter)
 and the first lesson will begin.
 
-You can leave the command window running learn and do the lessons at your own speed.
-If you break off, 
-when you come back,
-it will be just as you left it.
+You can leave the command window running learn
+and do the lessons at your own speed.
 
 If you want to give up at any point,
 note the number of the last lesson you completed
@@ -175,20 +175,16 @@ and shut the learn system down.
 To do that, at the end of a lesson,
 hold down the CTRL key and type a single d (no return key needed).
 That sequence is often written ctrl/d.
+The learn command exits and you can type more commands
+into your your git bash window.
 
-The learn command exits and you get the same prompt that you got at the start:
-
-    learner@79c33cdc14ac:/learn$
-
-Type another ctrl/d and your docker session finishes.
-You can close your git bash window.
-
-When you stop the docker container,
+When you end the docker session,
 all the files that you created in it are tidied away.
 Unfortunately, learn also forgets how far you got.
 That's why you need to keep a note of your last lesson number.
-If you supply that,
-learn continues from that point.
+When learn satrts,
+it invites you to give it a lesson number
+and continues from that point.
 
 Once you've finished the Files course,
 do the More Files course. 
@@ -197,11 +193,14 @@ It will take a few hours to do both courses.
 As I said,
 do them at your own speed.
 
-If you don't end the docker session tidily by typing ctrl/d twice,
+If you don't end the docker session tidily by typing ctrl/d,
 it will continue to run in the background,
 using up computer memory.
 You can end the session forcibly.
-Start another git bash window and do this:
+That involves knowing the container ID
+of the running session.
+To find it out,
+start another git bash window and do this:
 
     sudo docker ps
 
