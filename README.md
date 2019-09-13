@@ -2,9 +2,9 @@
 
 Learn is a Computer-Based Teaching tool that gives basic training
 in using UNIX and Linux.
-It was written in the nineteen
-seventies by Mike Lesk of AT&T Bell Laboratories with some
-contributions from Brian Kernighan.
+It was written in the nineteen seventies
+at AT&T Bell Laboratories by Mike Lesk 
+with some contributions from Brian Kernighan.
 
 Learn teaches basic UNIX commands.  It does so by driving the student
 through a series of lessons each of which involves using commands
@@ -27,9 +27,9 @@ but it would probably be better done
 in a series of short sessions.
 
 The learn software was aimed at an American audience,
-colleagues at Bell labs in the nineteen seventies.
+specifically colleagues at Bell labs in the nineteen seventies.
 Some of the lessons contain a cultural bias as a result.
-One of them requires a knowledge of baseball stars ofthe day.
+One requires a knowledge of baseball stars of the day.
 I suspect that many Americans might have difficulty answering that one today.
 
 Another lesson asks about "an unsuccessful English king".
@@ -41,9 +41,9 @@ In other countries,
 people probably don't remember him at all,
 so that question will cause problems for some people.
 
-A more serious problem with learn is that occasionally it can produces a problem
-that can't be answered -
-for example, it may ask you to find a file that it failed to set up.
+A more serious problem with learn is that
+occasionally it can produces an impossible exercise.
+For example, it may ask you to find a file that it failed to set up.
 If you can't make sense of a lesson,
 skip it and move on to the next one.
 Nobody's watching you.
@@ -51,7 +51,7 @@ Nobody's watching you.
 You can run learn on any laptop or desktop computer -
 a Windows PC, a Mac or whatever.
 I don't think it will run on a tablet.
-You need to install two pieces of support software first, 
+You may need to install some support software first, 
 and the way you do that is different on each system.
 Once you've done that,
 the process is the same whatever you use.
@@ -59,15 +59,14 @@ Since most people use Microsoft Windows,
 These instructions show how to run it in that environment.
 
 ## Installation
-You need to install git and docker.
-Installing docker can be the most difficult part,
-but both git and docker are very useful for other purposes,
+You need to install Docker.
+On a Mac, that's fairly easy,
+on a Winows machine it can be harder,
+in fact it may be the most difficult part of the whole exercise.
+However, Docker is very useful for other purposes,
 so it's worth the effort.
 
-To install git under Windows use [git for windows](https://git-for-windows.github.io/).
-
 If you're using Windows 10 Pro or Windows Enterprise,
-installing docker is fairly easy.
 Follow
 [these instructions](https://runnable.com/docker/install-docker-on-windows-10).
 
@@ -75,78 +74,90 @@ If you're using Windows 10 home,
 installing docker is a bit more difficult.
 First, you need to enter your computer's BIOS and enable virtualization.
 Doing that is is explained
-[here](https://www.laptopmag.com/articles/access-bios-windows-10),
-along with all sort of other BIOS changes that you can make.
-That explanation is very clear,
-but I found that ithe route through the Windows menus is now a bit different
+[here](https://www.laptopmag.com/articles/access-bios-windows-10).
+
+That document explains how to make all sorts of BIOS changes,
+but you just need to switch on virtualisation.
+When I did it,
+I found that the route through the Windows menus is now a bit different
 and so is the route through the BIOS on my machine.
 The virtualization option was in a different menu and it had a different name.
-
-The other problem was that the process is a bit complicated and
+The process is a bit complicated and
 once you are in the BIOS, you can't read web pages,
-so you have to note down what to do before you start.
+so if you don't have another computer handy,
+you have to note down what to do before you start.
 
-Once you've managed that,
-you need to download the docker toolbox
-using the git command that you installed earlier.
+Next
+you need to download the docker toolbox.
 That's described [here](https://medium.com/@mbyfieldcameron/docker-on-windows-10-home-edition-c186c538dff3).
 
-Once you have git and docker, it gets easier.
+I followed that writer's advice and installed Linux into Virtual Box.
+There are many flavours of Linux, and I chose Ubuntu.
+Whichever one you use,
+you need the latest supported version of the desktop version.
 
-Go to your start menu and run Git Bash. That starts a command window.
+Installing Linux into Virtual Box takes a long time
+and it asks you to make lots of decisions,
+but apart from your locale and timezone,
+you can just take the default option each time.
+I got the installation wrong the first time,
+but I just threw that one away and created another. 
 
-In a command window, you see a prompt of some sort.
+Once you've installed Linux,
+start it up and log in using the user name and password that you created
+during the installation.
+Once you see a Linux desktop,
+start a terminal running.
+How you do that depends on the flavour of Linux.
+You will have to look around the icons on the desktop.
+Once you have a terminal window running,
+expand it to full screen.
+
+It's usually possible to paste text from other windows
+into your Linux terminal window,
+but so far I haven't figured out how to that with Virtual Box.
+If you can copy and paste, that's handy
+because some of the commands shown below are quite long.
+The usual Windows shortcuts ctrl/c and ctrl/v do not work
+in a command window.
+Ctrl/c aborts the current command, so avoid typing that
+unless you mean to.
+
+In your command window, you see a prompt of some sort.
 Type a command and press the Enter key.
 The command runs.
 When it finishes,
 you get another prompt.
 
-Some of the commands you need to type are a bit long and complicated
-and you have to get them exactly right.
-You may want to copy them from here
-and paste them into your command window.
-You can do that,
-but the usual Windows shortcuts ctrl/c and ctrl/v do not work.
-(ctrl/c aborts the current command, so avoid typing that
-unless you mean to.)
-To paste text into a command window,
-right click on the window
-and a small menu appears with a Paste option.
-To copy text from the command window,
-highlight it wih the mouse,
-right click and use the Copy option.
-
-Type these commands in your command window.
-Press the enter key to run the command and
-wait for it to finish before you type the next one:
+Run these commands one by one,
+waiting for each to finish before running the next:
 
     git clone https://github.com/goblimey/learn-unix
     
     cd learn-unix
     
-    docker build . -t unixlearn
+    docker build . -t learnunix
     
-
 That last command will take a few minutes.
 It will produce output showing what it's doing.
 If all goes well, the last two lines should be something like:
 
     Successfully built 68b1841290ef
-    Successfully tagged unixlearn:latest
+    Successfully tagged learnunix:latest
     
 The first of those lines means that docker has built an image with ID 68b1841290ef.
 You get a different image ID each time you run this command.
 (You should only have to run it once.)
 
-The second line says that the image is tagged with the name "unixlearn".
+The second line says that the image is tagged with the name "learnunix".
 You can refer to it by this name rather than the image name.
 
 Run the image like so:
 
-    docker run -it --entrypoint=/bin/bash unixlearn
+    docker run -it --entrypoint=/bin/bash learnunix
 
 which starts the docker image running within a container
-and produces a prompt like this:
+and produces a prompt something like this:
 
     learner@79c33cdc14ac:/learn$
     
@@ -176,7 +187,11 @@ To do that, at the end of a lesson,
 hold down the CTRL key and type a single d (no return key needed).
 That sequence is often written ctrl/d.
 The learn command exits and you can type more commands
-into your your git bash window.
+into your your command window.
+
+Learn expects that various commands are available in the environment you are using:
+ls, cat, date, spell and so on.
+I've tried to make sure that they are all present.
 
 When you end the docker session,
 all the files that you created in it are tidied away.
@@ -196,10 +211,9 @@ do them at your own speed.
 If you don't end the docker session tidily by typing ctrl/d,
 it will continue to run in the background,
 using up computer memory.
-You can end the session forcibly.
-That involves knowing the container ID
-of the running session.
-To find it out,
+You can end the session forcibly
+if you know its container ID.
+To find that out,
 start another git bash window and do this:
 
     sudo docker ps
@@ -218,19 +232,20 @@ Stop that container like so, using its container ID:
 
 ## Other Courses
 Learn offers other courses,
+apart from files and more files,
 but the software that they teach about is of limited use to most users these days.
 
 The Editor course covers regular expressions,
 which are useful,
 but the editor it describes is an ancient command-driven tool.
-You will probably do better by typing "regular expressions" into Google.
+You will probably learn more by typing "regular expressions" into Google.
 
 The first lesson in the Macros course begins
 "WARNING: This course was written for UNIX in 1979, not 1999,
 and has not yet been updated. Some details may be way out of date!"
 
 Twenty years on, that's not a good sign.
-In fact the macros involved could be useful,
+Actually the macros involved could be useful,
 but only to people who wish to create and update UNIX man pages.
 
 The Eqn course covers a typesetting tool that is still used,
@@ -244,22 +259,23 @@ Since then I've made my living using these skills.
 
 The software and the lessons were not reworked as UNIX developed and they
 became increasingly out of date. Versions of UNIX were released that
-didn't contain the software, and it was largely forgotten.  However,
+didn't contain the learn software and it was largely forgotten.
+However,
 the material was preserved by the OpenBSD group.
 
 The learn software is written in the C programming language.
-That language also evolved,
-but the learn software was not reworked to match.
-Eventually it became impossible even to build and run it.
+That language also evolved and
+eventually it became impossible even to build and run it.
 
 One reason for learn falling out of use is that through the nineteen nineties
 the emphasis shifted from systems driven by a command line interface
 to systems driven by windows and a mouse.
-Microsoft produced its Windows system
-and UNIX systems were fitted with a similar style of interface
-using X-Windows.
-Software that taught the use of a redundant style of interface
-was not wanted on voyage.
+Microsoft's Windows system
+became the desktop operating system of choice
+for most people,
+with the Apple Mac as a close second.
+UNIX systems were fitted with their own Windows interface
+so knowledge of the commands became less important.
 
 In 2002 I reworked the learn source code
 so that it would compile and run,
@@ -269,30 +285,32 @@ That whole
 exercise took less than a week, which makes the original loss of
 the software a great pity.
 
-At the time this work did not
+At the time this work didn't
 gain traction,
 partly because of chicken and egg problems.
 Learn is
-aimed at people who do not know much about UNIX, but they needed to
+aimed at people who do not know much about UNIX,
+but they needed to
 know a certain amount to install and run it.
 Also, they needed access to a computer running UNIX.
 That could be done by installing Linux on an old Windows machine,
 but that involved knowing some UNIX commands ...
 
-More recently,
-command line interfaces systems have returned
-in the form of the Virtual Private Server (VPS)
+Nowadays
+command line interfaces are back.
+We are all using Virtual Private Server (VPS) systems
 and cloud computing.
 One very large computer run by an Internet Service Provider
-provides a large number of simulated computers
+provides lots of small simulated computers
 which are rented by its customers.
 These are very cheap and
 they can be set up and torn down to order using software such as Kubernetes.
-It's very common for virtual servers to run Linux
-and for them to be controlled via a UNIX command-line interface.
+Most virtual servers run Linux
+and you control them by
+logging in and using a command-line interface.
 Thus a generation of IT specialists with a background in
 windows-driven environments
-now have to get their heads around the command line interface,
+now have to get their heads around the UNIX command line interface,
 and the learn software becomes valuable again.
 
 Another recent development is the emergence of
@@ -303,13 +321,16 @@ so UNIX is becoming a mass-market product.
 It's also worth mentioning that Apple's Mac range of computers
 run UNIX.
 It's heavily disguised behind a nice windows-style interface,
-but for some uses you need to run a command window and drive it
-by typing UNIX commands.
+but for some uses you need to start a command window and
+type UNIX commands.
 
-In 2019 I solved the chicken and egg problems by reworking the software
+In 2019 I made learn much easier to use by reworking it
 to run under Docker.
-Now learn can be built and run in a Microsoft Windows environment
-and the process is straightforward.
+Now you can build and install it in a Microsoft Windows environment
+using a simple process.
+(The process is a bit long,
+but you just have to do all the steps one by one.
+you no longer need to understand lots of new stuff before you even start.)
 So it's now feasible to use the computer that you already have
 to learn basic UNIX commands.
 
@@ -321,7 +342,7 @@ precise conditions, see the file LICENSE or any of the C source files.
 ## Use in Schools and Colleges
 
 The docker version is mainly intended for a machine running
-Microsoft Windows, as that is the most common environment available.
+Microsoft Windows, as that's the most common environment available.
 Without docker, you would have serious difficulties getting learn to run
 there.
 
@@ -339,7 +360,6 @@ repository and install learn permanently like so:
     sudo make install
     
 See the INSTALL file in the learn directory for more complex environments. 
-
 
 
 ## Layout of the material
