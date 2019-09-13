@@ -1,4 +1,4 @@
-# A Docker Version of the UNIX Learn CBT package
+# The UNIX Learn CBT package Running Under Docker
 
 Learn is a Computer-Based Teaching tool that gives basic training
 in using UNIX and Linux.
