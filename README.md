@@ -347,8 +347,8 @@ All this makes UNIX a mass-market product
 and
 a generation of IT specialists with a background in
 windows-driven environments
-now have to get their heads around the UNIX command line interface,
-and the learn software becomes valuable again.
+now have to get their heads around the UNIX command line interface.
+So the learn software becomes valuable again.
 
 
 In 2019 I made learn much easier to use by reworking it
