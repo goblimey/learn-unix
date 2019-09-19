@@ -251,11 +251,38 @@ but only to people who wish to create and update UNIX man pages.
 The Eqn course covers a typesetting tool that is still used,
 but the subject is somewhat of a niche.
 
+## Fun With Docker
+Now that you have Docker installed, there's a huge amount of useful software
+out there that you can run for free.
+The [Docker Hub](https://hub.docker.com)
+contains thousands of ready-made Dockerfiles that you can use.
+Each one downloads and builds a piece of free software.
+
+To build and install the learn software, Docker does this:
+
+    ./configure
+    make install
+
+That's a very common recipe for building free software.
+So if what you want is available but not already on the Docker Hub,
+you can download it,
+create your own Dockerfile to build it,
+then run it
+on a Windows PC, a Mac, a Raspberry Pi,
+an Amazon AWS server
+or pretty much anywhere.
+For example, see my reworked NTRIP caster
+[here](https://github.com/goblimey/ntripcaster).
+Never mind what one of those is,
+the point is that the original is built and installed
+in the same way as the learn software,
+so the Dockerfiles for the two projects are very similar.
+
 ## A Brief History of Learn
 The learn software was originally included in version 7 UNIX
 which was released in 1978.
-I and many other people used it in the eighties to learn the basics of UNIX.
-Since then I've made my living using these skills.
+I and many others used it in the eighties to learn the basics of UNIX.
+Since then I've made my living using those skills.
 
 The software and the lessons were not reworked as UNIX developed and they
 became increasingly out of date. Versions of UNIX were released that
@@ -265,12 +292,12 @@ the material was preserved by the OpenBSD group.
 
 The learn software is written in the C programming language.
 That language also evolved and
-eventually it became impossible even to build and run it.
+eventually it became impossible even to build and run learn.
 
 One reason for learn falling out of use is that through the nineteen nineties
-the emphasis shifted from systems driven by a command line interface
+the emphasis shifted from command line interfaces
 to systems driven by windows and a mouse.
-Microsoft's Windows system
+Microsoft Windows
 became the desktop operating system of choice
 for most people,
 with the Apple Mac as a close second.
@@ -289,10 +316,10 @@ At the time this work didn't
 gain traction,
 partly because of chicken and egg problems.
 Learn is
-aimed at people who do not know much about UNIX,
-but they needed to
+aimed at people who don't know much about UNIX,
+but they need to
 know a certain amount to install and run it.
-Also, they needed access to a computer running UNIX.
+Also, they need access to a computer running UNIX.
 That could be done by installing Linux on an old Windows machine,
 but that involved knowing some UNIX commands ...
 
@@ -300,29 +327,29 @@ Nowadays
 command line interfaces are back.
 We are all using Virtual Private Server (VPS) systems
 and cloud computing.
-One very large computer run by an Internet Service Provider
-provides lots of small simulated computers
-which are rented by its customers.
-These are very cheap and
-they can be set up and torn down to order using software such as Kubernetes.
+Virtual servers are very cheap and
+they can be set up and torn down to order using software such as Kubernetes,
+with the application software running under Docker.
 Most virtual servers run Linux
 and you control them by
-logging in and using a command-line interface.
-Thus a generation of IT specialists with a background in
+logging in via a command-line interface.
+
+Apple's Mac range of computers
+run UNIX.
+It's heavily disguised behind a nice windows-style interface,
+but for some purposes you need to start a command window and
+type UNIX commands.
+
+A more recent development is the emergence of
+very cheap single-board computers running Linux, such as the Raspberry Pi.
+
+All this makes UNIX a mass-market product
+and
+a generation of IT specialists with a background in
 windows-driven environments
 now have to get their heads around the UNIX command line interface,
 and the learn software becomes valuable again.
 
-Another recent development is the emergence of
-very cheap single-board computers such as the Raspberry Pi.
-These run versions of Luinux such as Raspbian,
-so UNIX is becoming a mass-market product.
-
-It's also worth mentioning that Apple's Mac range of computers
-run UNIX.
-It's heavily disguised behind a nice windows-style interface,
-but for some uses you need to start a command window and
-type UNIX commands.
 
 In 2019 I made learn much easier to use by reworking it
 to run under Docker.
