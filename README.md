@@ -82,11 +82,11 @@ Digital Ocean Droplet:
 
 Mac:
 
-[insatalling git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+[installing git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 [installing docker](https://docs.docker.com/docker-for-mac/install/)
 
-To use Docker on a MAC, you also need to know how to start a command window.
+If you're using a MAC you also need to know how to start a command window.
 That's described [here](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
 
 ### Installing Docker on a Windows Machine
