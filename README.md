@@ -6,17 +6,17 @@ It was written in the nineteen seventies
 at AT&T Bell Laboratories by Mike Lesk 
 with some contributions from Brian Kernighan.
 
-Learn teaches basic UNIX commands.  It does so by driving the student
+Learn teaches basic UNIX commands.  It does so by driving you
 through a series of lessons each of which involves using commands
 to achieve some goal, such as creating a file with a specified
 contents.
-When the student announces that she has finished the lesson,
+When you announce that you have finished the lesson,
 the software checks the result,
 marks the lesson and moves on to the next one.
 
 Although the result looks a little antiquated to some,
 learn has proved to be extremely valuable
-because it teaches the student by getting her to use real UNIX
+because it works by getting you to use real UNIX
 commands on a real UNIX system.
 
 Learn offers a number of courses,
@@ -30,10 +30,12 @@ The learn software was aimed at an American audience,
 specifically colleagues at Bell labs in the nineteen seventies.
 Some of the lessons contain a cultural bias as a result.
 One requires a knowledge of baseball stars of the day.
-I suspect that many Americans might have difficulty answering that one today.
+Being a Brit,
+I didn't have a clue what the answer was when I used learn back in the 1980s.
+I suspect that many Americans would have difficulty answering that one today.
 
 Another lesson asks about "an unsuccessful English king".
-The answer is George III,
+The answer is George the Third,
 who was king when England lost the American colony.
 That may make sense to an American,
 but over here in the UK we remember George for being mad, not unsuccessful.
@@ -42,8 +44,9 @@ people probably don't remember him at all,
 so that question will cause problems for some people.
 
 A more serious problem with learn is that
-occasionally it can produces an impossible exercise.
+occasionally it can produces an impossible task.
 For example, it may ask you to find a file that it failed to set up.
+
 If you can't make sense of a lesson,
 skip it and move on to the next one.
 Nobody's watching you.
@@ -51,26 +54,37 @@ Nobody's watching you.
 You can run learn on any laptop or desktop computer -
 a Windows PC, a Mac or whatever.
 I don't think it will run on a tablet.
+
 You may need to install some support software first, 
 and the way you do that is different on each system.
 Once you've done that,
-the process is the same whatever you use.
-Since most people use Microsoft Windows,
-These instructions show how to run it in that environment.
+the process is the same everywhere.
 
 ## Installation
-You need to install Docker.
+You need to install git and Docker.
 On a Mac or a Cloud server, that's fairly easy,
 on a Winows machine it can be harder,
 in fact it may be the most difficult part of the whole exercise.
 However, Docker is very useful for other purposes,
 so it's worth the effort.
 
-[installing docker on an Amazon ECS server](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
+Amazon EC2 Instance:
 
-[installing docker on a Digital Ocean Droplet](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+[installing git](https://cloudaffaire.com/how-to-install-git-in-aws-ec2-instance/)
 
-[installing docker on a MAC](https://docs.docker.com/docker-for-mac/install/)
+[installing docker](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
+
+Digital Ocean Droplet:
+
+[installing git](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04)
+
+[installing docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+
+Mac:
+
+[insatalling git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+[installing docker](https://docs.docker.com/docker-for-mac/install/)
 
 To use Docker on a MAC, you also need to know how to start a command window.
 That's described [here](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
