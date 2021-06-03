@@ -60,11 +60,22 @@ These instructions show how to run it in that environment.
 
 ## Installation
 You need to install Docker.
-On a Mac, that's fairly easy,
+On a Mac or a Cloud server, that's fairly easy,
 on a Winows machine it can be harder,
 in fact it may be the most difficult part of the whole exercise.
 However, Docker is very useful for other purposes,
 so it's worth the effort.
+
+[installing docker on an Amazon ECS server](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
+
+[installing docker on a Digital Ocean Droplet](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+
+[installing docker on a MAC](https://docs.docker.com/docker-for-mac/install/)
+
+To use Docker on a MAC, you also need to know how to start a command window.
+That's described [here](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
+
+### Installing Docker on a Windows Machine
 
 If you're using Windows 10 Pro or Windows Enterprise,
 Follow
@@ -87,14 +98,14 @@ once you are in the BIOS, you can't read web pages,
 so if you don't have another computer handy,
 you have to note down what to do before you start.
 
-Next
+Once you've enabled virtualization
 you need to download the docker toolbox.
 That's described [here](https://medium.com/@mbyfieldcameron/docker-on-windows-10-home-edition-c186c538dff3).
 
 I followed that writer's advice and installed Linux into Virtual Box.
 There are many flavours of Linux, and I chose Ubuntu.
 Whichever one you use,
-you need the latest supported version of the desktop version.
+you need the latest supported version of the desktop installation.
 
 Installing Linux into Virtual Box takes a long time
 and it asks you to make lots of decisions,
