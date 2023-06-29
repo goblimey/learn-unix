@@ -14,42 +14,10 @@ When you announce that you have finished the lesson,
 the software checks the result,
 marks the lesson and moves on to the next one.
 
-Although the result looks a little antiquated to some,
+Although the result looks a little antiqu,
 learn has proved to be extremely valuable
 because it works by getting you to use real UNIX
 commands on a real UNIX system.
-
-Learn offers a number of courses,
-the most useful being Files and More Files.
-With good progress,
-it should be possible to get through both of those in one day,
-but it would probably be better done
-in a series of short sessions.
-
-The learn software was aimed at an American audience,
-specifically colleagues at Bell labs in the nineteen seventies.
-Some of the lessons contain a cultural bias as a result.
-One requires a knowledge of baseball stars of the day.
-Being a Brit,
-I didn't have a clue what the answer was when I used learn back in the 1980s.
-I suspect that many Americans would have difficulty answering that one today.
-
-Another lesson asks about "an unsuccessful English king".
-The answer is George the Third,
-who was king when England lost the American colony.
-That may make sense to an American,
-but over here in the UK we remember George for being mad, not unsuccessful.
-In other countries,
-people probably don't remember him at all,
-so that question will cause problems for some people.
-
-A more serious problem with learn is that
-occasionally it can produces an impossible task.
-For example, it may ask you to find a file that it failed to set up.
-
-If you can't make sense of a lesson,
-skip it and move on to the next one.
-Nobody's watching you.
 
 You can run learn on any laptop or desktop computer -
 a Windows PC, a Mac or whatever.
@@ -62,23 +30,14 @@ the process is the same everywhere.
 
 ## Installation
 You need to install git and Docker.
-On a Mac or a Cloud server, that's fairly easy,
-on a Winows machine it can be harder,
-in fact it may be the most difficult part of the whole exercise.
-However, Docker is very useful for other purposes,
-so it's worth the effort.
 
-Amazon EC2 Instance:
+Windows:
 
-[installing git](https://cloudaffaire.com/how-to-install-git-in-aws-ec2-instance/)
+[installing git](https://git-scm.com/download/win/)
 
-[installing docker](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
+[installing docker](https://docs.docker.com/desktop/install/windows-install/)
 
-Digital Ocean Droplet:
 
-[installing git](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04)
-
-[installing docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
 
 Mac:
 
@@ -89,64 +48,26 @@ Mac:
 If you're using a MAC you also need to know how to start a command window.
 That's described [here](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
 
-### Installing Docker on a Windows Machine
 
-If you're using Windows 10 Pro or Windows Enterprise,
-Follow
-[these instructions](https://runnable.com/docker/install-docker-on-windows-10).
+Digital Ocean Droplet:
 
-If you're using Windows 10 home,
-installing docker is a bit more difficult.
-First, you need to enter your computer's BIOS and enable virtualization.
-Doing that is is explained
-[here](https://www.laptopmag.com/articles/access-bios-windows-10).
+[installing git](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04)
 
-That document explains how to make all sorts of BIOS changes,
-but you just need to switch on virtualisation.
-When I did it,
-I found that the route through the Windows menus is now a bit different
-and so is the route through the BIOS on my machine.
-The virtualization option was in a different menu and it had a different name.
-The process is a bit complicated and
-once you are in the BIOS, you can't read web pages,
-so if you don't have another computer handy,
-you have to note down what to do before you start.
+[installing docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
 
-Once you've enabled virtualization
-you need to download the docker toolbox.
-That's described [here](https://medium.com/@mbyfieldcameron/docker-on-windows-10-home-edition-c186c538dff3).
 
-I followed that writer's advice and installed Linux into Virtual Box.
-There are many flavours of Linux, and I chose Ubuntu.
-Whichever one you use,
-you need the latest supported version of the desktop installation.
+Amazon EC2 Instance:
 
-Installing Linux into Virtual Box takes a long time
-and it asks you to make lots of decisions,
-but apart from your locale and timezone,
-you can just take the default option each time.
-I got the installation wrong the first time,
-but I just threw that one away and created another. 
+[installing git](https://cloudaffaire.com/how-to-install-git-in-aws-ec2-instance/)
 
-Once you've installed Linux,
-start it up and log in using the user name and password that you created
-during the installation.
-Once you see a Linux desktop,
-start a terminal running.
-How you do that depends on the flavour of Linux.
-You will have to look around the icons on the desktop.
-Once you have a terminal window running,
-expand it to full screen.
+[installing docker](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
 
-It's usually possible to paste text from other windows
-into your Linux terminal window,
-but so far I haven't figured out how to that with Virtual Box.
-If you can copy and paste, that's handy
-because some of the commands shown below are quite long.
-The usual Windows shortcuts ctrl/c and ctrl/v do not work
-in a command window.
-Ctrl/c aborts the current command, so avoid typing that
-unless you mean to.
+
+## Running Learn
+
+Once you've installed git and docker,
+you need to start a command window.
+For windows use git bash.
 
 In your command window, you see a prompt of some sort.
 Type a command and press the Enter key.
@@ -154,8 +75,8 @@ The command runs.
 When it finishes,
 you get another prompt.
 
-Run these commands one by one,
-waiting for each to finish before running the next:
+Run these commands one by one.
+Wait for each to finish before running the next:
 
     git clone https://github.com/goblimey/learn-unix
     
@@ -171,7 +92,7 @@ If all goes well, the last two lines should be something like:
     Successfully tagged learnunix:latest
     
 The first of those lines means that docker has built an image with ID 68b1841290ef.
-You get a different image ID each time you run this command.
+You get a different image ID each time you run docker build.
 (You should only have to run it once.)
 
 The second line says that the image is tagged with the name "learnunix".
@@ -186,7 +107,9 @@ and produces a prompt something like this:
 
     learner@79c33cdc14ac:/learn$
     
-Within the Docker session a user called "learner" is logged in.
+The docker session is running a version of Linux 
+within whatever operating system your computer uses.
+You are logged into it as a user called "learner".
 You will use that user to run learn.
 The system is prompting for a command.  Run this command:
 
@@ -199,24 +122,60 @@ and you will see this:
     the last lesson number the computer printed.
     To start at the beginning, just hit return.
    
-Press the Return key (which is sometimes labelled Enter)
+Press the Enter key
 and the first lesson will begin.
 
 You can leave the command window running learn
 and do the lessons at your own speed.
 
+Learn offers a number of courses,
+the most useful being Files and More Files.
+With good progress,
+it should be possible to get through both of those in one day,
+but it would probably be better done
+in a series of short sessions.
+
+The learn software was aimed at an American audience,
+specifically colleagues at Bell labs in the nineteen seventies.
+Some of the lessons are biased to that culture.
+One requires a knowledge of baseball stars of the day.
+Being a Brit,
+I didn't have a clue what the answer was when I used learn back in the 1980s.
+I suspect that many Americans would have difficulty answering that one today.
+
+Another lesson asks about "an unsuccessful English king".
+The answer is George the Third,
+who was King when England lost the American colony.
+That may make sense to an American,
+but over here in the UK we remember George the Third
+for being mad, not unsuccessful.
+In other countries,
+people probably don't remember him at all,
+so that question will cause problems for some people.
+
+A more serious problem with learn is that
+occasionally it can produces an impossible task.
+For example, it may ask you to find a file that it failed to set up.
+
+If you can't make sense of a lesson,
+skip it and move on to the next one.
+Nobody's watching you.
+
 If you want to give up at any point,
 note the number of the last lesson you completed
 and shut the learn system down.
 To do that, at the end of a lesson,
-hold down the CTRL key and type a single d (no return key needed).
-That sequence is often written ctrl/d.
+hold down the CTRL key and type a single d (no Enter key needed).
 The learn command exits and you can type more commands
 into your your command window.
 
 Learn expects that various commands are available in the environment you are using:
 ls, cat, date, spell and so on.
 I've tried to make sure that they are all present.
+
+One of the most important commands that learn covers is man,
+the online manual.
+Knowing about man allows you to learn about lots more commands.
 
 When you end the docker session,
 all the files that you created in it are tidied away.
@@ -227,19 +186,17 @@ it invites you to give it a lesson number
 and continues from that point.
 
 Once you've finished the Files course,
-do the More Files course. 
+do the More Files course.
 
 It will take a few hours to do both courses.
-As I said,
-do them at your own speed.
-
+Do them at your own speed.
 If you don't end the docker session tidily by typing ctrl/d,
 it will continue to run in the background,
 using up computer memory.
 You can end the session forcibly
 if you know its container ID.
 To find that out,
-start another git bash window and do this:
+start another command window and do this:
 
     sudo docker ps
 
@@ -269,7 +226,7 @@ The first lesson in the Macros course begins
 "WARNING: This course was written for UNIX in 1979, not 1999,
 and has not yet been updated. Some details may be way out of date!"
 
-Twenty years on, that's not a good sign.
+Years later, that's not a good sign.
 Actually the macros involved could be useful,
 but only to people who wish to create and update UNIX man pages.
 
@@ -317,7 +274,7 @@ the material was preserved by the OpenBSD group.
 
 The learn software is written in the C programming language.
 That language also evolved and
-eventually it became impossible even to build and run learn.
+eventually it became impossible even to build and run the learn software.
 
 One reason for learn falling out of use is that through the nineteen nineties
 the emphasis shifted from command line interfaces
@@ -379,10 +336,7 @@ So the learn software becomes valuable again.
 In 2019 I made learn much easier to use by reworking it
 to run under Docker.
 Now you can build and install it in a Microsoft Windows environment
-using a simple process.
-(The process is a bit long,
-but you just have to do all the steps one by one.
-you no longer need to understand lots of new stuff before you even start.)
+using a simple process,
 So it's now feasible to use the computer that you already have
 to learn basic UNIX commands.
 
@@ -398,7 +352,7 @@ Microsoft Windows, as that's the most common environment available.
 Without docker, you would have serious difficulties getting learn to run
 there.
 
-If you have your own network of UNIX machines, you can clone the github
+If you have your own Linux machines, you can clone the github
 repository and install learn permanently like so:
 
     git clone https://github.com/goblimey/learn-unix
@@ -435,7 +389,8 @@ This makes it a good medium for writing courses about UNIX.
 
 As Lesk explains in his paper, the main hurdle is to get the user started.
 To run learn, she has to understand how to type commands.
-This is the first thing that learn teaches, could she
+This is the first thing that learn teaches,
+if only the student could
 figure out how to run it ...
 
 I hope that you find learn as valuable as I did all those years ago.
