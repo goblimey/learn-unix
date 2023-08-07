@@ -6,6 +6,14 @@ It was written in the nineteen seventies
 at AT&T Bell Laboratories by Mike Lesk 
 with some contributions from Brian Kernighan.
 
+This version of the tool runs under Docker, which 
+allows it to to run on a Windows system
+makes it easier to install
+on all systems.
+Docker can run on
+a Windows PC, a Mac, a cloud server or whatever.
+(I don't think it will run on a phone or a tablet.)
+
 Learn teaches basic UNIX commands.  It does so by driving you
 through a series of lessons each of which involves using commands
 to achieve some goal, such as creating a file with a specified
@@ -14,32 +22,57 @@ When you announce that you have finished the lesson,
 the software checks the result,
 marks the lesson and moves on to the next one.
 
-Although the result looks a little antiqu,
+Although the result looks a little antiquated,
 learn has proved to be extremely valuable
 because it works by getting you to use real UNIX
 commands on a real UNIX system.
 
-You can run learn on any laptop or desktop computer -
-a Windows PC, a Mac or whatever.
-I don't think it will run on a tablet.
-
-You may need to install some support software first, 
-and the way you do that is different on each system.
-Once you've done that,
-the process is the same everywhere.
 
 ## Installation
-You need to install git and Docker.
 
-Windows:
+Whichever system you use to run the learn tool,
+it needs to run
+git and docker. 
+The installation process for those is different on each system.
+Once you've installed them,
+the process of building and running the learn tool itself
+is the same everywhere.
+
+Docker runs under Windows 11 Home,
+recent versions of Windows 10 Home
+and under Windows Pro.
+To install it on Windows Home systems
+you also need
+to install the Windows Subsystem for Linux version 2
+(WSL2).
+
+A Digital Ocean Droplet or an Amazon EC2 instance
+both provide a cloud server on which you can
+run Docker and therefore the learn tool.
+You need to control a cloud server from a local machine
+such as a laptop computer.
+If that's running Windows,
+you need to install git bash on it as shown below.
+
+### Windows Home
 
 [installing git](https://git-scm.com/download/win/)
+
+Install WSL2 as described [here](https://learn.microsoft.com/en-us/windows/wsl/install/).
+That needs you to run a DOS command window in admin mode:
+type "cmd" into the search box at the bottom of the screen,
+right click on the black icon that appears
+and choose "run as adminstrator".
+That starts the command window.
+Select it,
+type "wsl --install" into it (without the quotes)
+and press the enter key to run the command.
 
 [installing docker](https://docs.docker.com/desktop/install/windows-install/)
 
 
 
-Mac:
+### Apple Mac
 
 [installing git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
@@ -49,25 +82,28 @@ If you're using a MAC you also need to know how to start a command window.
 That's described [here](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
 
 
-Digital Ocean Droplet:
+### Digital Ocean Droplet
 
 [installing git](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04)
 
 [installing docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
 
 
-Amazon EC2 Instance:
+### Amazon EC2 Instance
 
 [installing git](https://cloudaffaire.com/how-to-install-git-in-aws-ec2-instance/)
 
 [installing docker](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
 
 
-## Running Learn
 
-Once you've installed git and docker,
-you need to start a command window.
-For windows use git bash.
+## Building Learn
+
+### Windows
+
+Under windows you need two command windows,
+the DOS command window that you used earlier to install WSL2,
+plus a git bash window.
 
 In your command window, you see a prompt of some sort.
 Type a command and press the Enter key.
@@ -75,14 +111,23 @@ The command runs.
 When it finishes,
 you get another prompt.
 
-Run these commands one by one.
-Wait for each to finish before running the next:
+Run the commands one by one.
+Wait for each to finish before running the next.
+
+Run this commands in your git bash window:
 
     git clone https://github.com/goblimey/learn-unix
+
+That creates a directory called learn-unix containing a copy
+of this repository.
+
+In your DOS command window, change to that directory
+and build the docker image like so:
     
     cd learn-unix
-    
-    docker build . -t learnunix
+    docker build -t learnunix .
+
+(Note the "." at the end of the line.)
     
 That last command will take a few minutes.
 It will produce output showing what it's doing.
@@ -98,11 +143,44 @@ You get a different image ID each time you run docker build.
 The second line says that the image is tagged with the name "learnunix".
 You can refer to it by this name rather than the image name.
 
-Run the image like so:
+### All Other Systems
+
+Once you've installed git and docker,
+you need to start a command window
+and run these commands:
+
+    git clone https://github.com/goblimey/learn-unix
+    
+    cd learn-unix
+    
+    docker build -t learnunix .
+
+(Note the "." at the end of the line.)
+    
+That last command will take a few minutes.
+It will produce output showing what it's doing.
+If all goes well, the last two lines should be something like:
+
+    Successfully built 68b1841290ef
+    Successfully tagged learnunix:latest
+    
+The first of those lines means that docker has built an image with ID 68b1841290ef.
+You should only have to build the image once.
+If you run the build command again,
+you will get another image with a different ID.
+
+The second line says that the image is tagged with the name "learnunix".
+You can refer to it by this name rather than the image name.
+
+## Running Learn 
+
+On any system, run the Docker image in a command window like so:
 
     docker run -it --entrypoint=/bin/bash learnunix
 
-which starts the docker image running within a container
+(Under Windows, use a DOS command window to do that.)
+
+That starts the image running within a container
 and produces a prompt something like this:
 
     learner@79c33cdc14ac:/learn$
@@ -142,6 +220,7 @@ One requires a knowledge of baseball stars of the day.
 Being a Brit,
 I didn't have a clue what the answer was when I used learn back in the 1980s.
 I suspect that many Americans would have difficulty answering that one today.
+Use Google to find the answer or skip the question - nobody's watching you.
 
 Another lesson asks about "an unsuccessful English king".
 The answer is George the Third,
@@ -151,23 +230,35 @@ but over here in the UK we remember George the Third
 for being mad, not unsuccessful.
 In other countries,
 people probably don't remember him at all,
-so that question will cause problems for some people.
+so that question would cause problems for some people.
 
 A more serious problem with learn is that
-occasionally it can produces an impossible task.
-For example, it may ask you to find a file that it failed to set up.
+some lessons depend on material created in an earlier lesson
+and for various reasons, that may not have run. 
+So occasionally learn might produce an impossible task.
+For example, it may ask you to find a file that's
+not been set up.
 
 If you can't make sense of a lesson,
 skip it and move on to the next one.
-Nobody's watching you.
 
-If you want to give up at any point,
+## Shutting Down
+
+If you want to pause
+and come back later,
 note the number of the last lesson you completed
 and shut the learn system down.
-To do that, at the end of a lesson,
+To do that,
 hold down the CTRL key and type a single d (no Enter key needed).
 The learn command exits and you can type more commands
 into your your command window.
+If you type CTRL and d again
+you will exit from the container,
+it will die
+and you will be back in your command
+window on the host machine.
+If you carry on typing commands
+they run on the host machine.
 
 Learn expects that various commands are available in the environment you are using:
 ls, cat, date, spell and so on.
@@ -190,7 +281,7 @@ do the More Files course.
 
 It will take a few hours to do both courses.
 Do them at your own speed.
-If you don't end the docker session tidily by typing ctrl/d,
+If you don't end the docker session tidily by typing ctrl/d twice
 it will continue to run in the background,
 using up computer memory.
 You can end the session forcibly
@@ -233,7 +324,26 @@ but only to people who wish to create and update UNIX man pages.
 The Eqn course covers a typesetting tool that is still used,
 but the subject is somewhat of a niche.
 
-## Fun With Docker
+## GIT Bash
+
+If you use Microsoft Windows you need to install git bash to install the learn tool.
+Once you've complete the lessons,
+you will find that they also work
+if you type them into a git bash window
+without running Docker.
+The real purpose of git bash is to add a UNIX-style 
+command line interface
+to your Windows machine. 
+
+(Pretty much the only command git bash doesn't provide is "learn".
+You need to run the Docker container to get that.)
+
+## Fun With Free Software
+
+Docker is free for personal use,
+but a large company may need to buy a licence to use it -
+see the Docker website.
+
 Now that you have Docker installed, there's a huge amount of useful software
 out there that you can run for free.
 The [Docker Hub](https://hub.docker.com)
@@ -272,7 +382,7 @@ didn't contain the learn software and it was largely forgotten.
 However,
 the material was preserved by the OpenBSD group.
 
-The learn software is written in the C programming language.
+The learn software was written in the C programming language.
 That language also evolved and
 eventually it became impossible even to build and run the learn software.
 
@@ -296,28 +406,39 @@ the software a great pity.
 
 At the time this work didn't
 gain traction,
-partly because of chicken and egg problems.
+because of a chicken and egg problem.
 Learn is
 aimed at people who don't know much about UNIX,
-but they need to
+but they needed to
 know a certain amount to install and run it.
-Also, they need access to a computer running UNIX.
+Also, they needed access to a computer running UNIX.
 That could be done by installing Linux on an old Windows machine,
 but that involved knowing some UNIX commands ...
 
-Nowadays
+In 2019 I fixed that problem by reworking the learn system
+to run under Docker.
+At the time
+you could run Docker images on a Windows system
+but it was a bit fiddly.
+Now it's much easier,
+so you can finally use learn to teach yourself about UNIX and Linux
+before you invest in a real system.
+
+That knowledge is useful because
 command line interfaces are back.
 We are all using Virtual Private Server (VPS) systems
-and cloud computing.
+(AKA cloud computers).
 Virtual servers are very cheap and
 they can be set up and torn down to order using software such as Kubernetes,
 with the application software running under Docker.
-Most virtual servers run Linux
-and you control them by
-logging in via a command-line interface.
+Linux is free so
+many virtual servers run it.
+Once they are running they are controlled by
+somebody connecting from a command window
+and running commands on them.
 
 Apple's Mac range of computers
-run UNIX.
+have always run UNIX.
 It's heavily disguised behind a nice windows-style interface,
 but for some purposes you need to start a command window and
 type UNIX commands.
@@ -329,16 +450,8 @@ All this makes UNIX a mass-market product
 and
 a generation of IT specialists with a background in
 windows-driven environments
-now have to get their heads around the UNIX command line interface.
-So the learn software becomes valuable again.
-
-
-In 2019 I made learn much easier to use by reworking it
-to run under Docker.
-Now you can build and install it in a Microsoft Windows environment
-using a simple process,
-So it's now feasible to use the computer that you already have
-to learn basic UNIX commands.
+have to get their heads around the UNIX command line interface.
+So the learn software has become valuable again.
 
 The learn software and the courses are copyright AT&T, but a note
 in the source code gives permission for fairly free use.  For the
@@ -378,7 +491,11 @@ which contains a directory for each course.  Lesson 3.1a is in
 the file L3.1a and so on.
 
 The directory man contains the manual entry in nroff (man) format.
-When running the docker image, type "man learn" to read it.
+When running the docker image, type
+
+    man learn
+
+before you run learn command to read the manual entry for it.
 
 A paper by Lesk in volume 2 of the version 7 UNIX manual
 explains how to write new lessons.  Now over forty years old, the
@@ -387,12 +504,18 @@ it runs under UNIX, it's implemented using UNIX, and when using it,
 the student is driven through using UNIX commands to achieve the results.
 This makes it a good medium for writing courses about UNIX.
 
-As Lesk explains in his paper, the main hurdle is to get the user started.
-To run learn, she has to understand how to type commands.
+(Having said that it looks clunky,
+Google's ultra-modern
+Go programming language is supported by a piece of training
+software that's only slightly more sophisticated.)
+
+As Lesk explains in his origina paper,
+the main hurdle is to get the user started.
+To run learn, the student has to understand how to type commands.
 This is the first thing that learn teaches,
-if only the student could
+if only she could
 figure out how to run it ...
 
-I hope that you find learn as valuable as I did all those years ago.
+I hope that you find the learn tool as valuable as I did all those years ago.
 
 Simon Ritchie ([goblimey.com](http://goblimey.com))
