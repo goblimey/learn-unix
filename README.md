@@ -54,19 +54,37 @@ such as a laptop computer.
 If that's running Windows,
 you need to install git bash on it as shown below.
 
+Once you've installed Docker,
+you may wish to create an account on the docker hub,
+either using the docker app that's installed on your desktop
+(on Windows and a Mac) or via [this web page](https://hub.docker.com/).
+(You don't need to do that if you just want to run the learn software.)
+
+
 ### Windows Home
+
+To install Docker under Windows Home
+you first need to install
+the Windows Subsystem for Linux version 2
+(WSL2) as described [here](https://learn.microsoft.com/en-us/windows/wsl/install/).
+That involves running a DOS command window in admin mode:
+type "cmd" into the search box at the bottom of the screen,
+right click on the black icon that appears
+(marked "Command Prompt app")
+and choose "run as administrator".
+
+That starts the command window.
+Select it,
+type
+
+    wsl --install
+
+into it (that's wsl space hyphen hyphen install)
+and press the enter key to run the command.
+
 
 [installing git](https://git-scm.com/download/win/)
 
-Install WSL2 as described [here](https://learn.microsoft.com/en-us/windows/wsl/install/).
-That needs you to run a DOS command window in admin mode:
-type "cmd" into the search box at the bottom of the screen,
-right click on the black icon that appears
-and choose "run as adminstrator".
-That starts the command window.
-Select it,
-type "wsl --install" into it (without the quotes)
-and press the enter key to run the command.
 
 [installing docker](https://docs.docker.com/desktop/install/windows-install/)
 
@@ -82,11 +100,15 @@ If you're using a MAC you also need to know how to start a command window.
 That's described [here](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
 
 
-### Digital Ocean Droplet
+### Digital Ocean Droplet Running Ubuntu Linux
 
 [installing git](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04)
 
 [installing docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+
+If docker is installed but not active (started) this command will start it:
+
+    sudo systemctl start docker
 
 
 ### Amazon EC2 Instance
@@ -133,15 +155,17 @@ That last command will take a few minutes.
 It will produce output showing what it's doing.
 If all goes well, the last two lines should be something like:
 
-    Successfully built 68b1841290ef
-    Successfully tagged learnunix:latest
-    
-The first of those lines means that docker has built an image with ID 68b1841290ef.
-You get a different image ID each time you run docker build.
-(You should only have to run it once.)
+    => => naming to docker.io/library/learnunix
 
-The second line says that the image is tagged with the name "learnunix".
-You can refer to it by this name rather than the image name.
+    What's Next?
+        View summary of image vulnerabilities and recommendation -> docker scout quickview
+    
+The first of those lines means that docker has built an image called learnunix
+
+The second line suggests that you run docker scout.
+See later for more about that.
+
+
 
 ### All Other Systems
 
@@ -188,8 +212,8 @@ and produces a prompt something like this:
 The docker session is running a version of Linux 
 within whatever operating system your computer uses.
 You are logged into it as a user called "learner".
-You will use that user to run learn.
-The system is prompting for a command.  Run this command:
+The system is prompting for a command.  To run the learn software,
+run this command:
 
     learn files
 
@@ -262,7 +286,8 @@ they run on the host machine.
 
 Learn expects that various commands are available in the environment you are using:
 ls, cat, date, spell and so on.
-I've tried to make sure that they are all present.
+They should all be present
+in the docker image.
 
 One of the most important commands that learn covers is man,
 the online manual.
@@ -300,7 +325,90 @@ something like:
 So in this example, docker is running image 68b1841290ef in container ID a5666adfd5d5.
 Stop that container like so, using its container ID:
 
-    docker stop a5666adfd5d5
+    docker stop a5666adfd5d5,
+
+
+
+
+## Docker Scout
+
+If you build an image under Windows,
+Docker invites you to examine it using something called Docker Scout.
+
+Docker Scout is (in 2023) a new tool, currently on early access and free.
+See [here](https://github.com/docker/scout-cli) to install it.  
+
+To use Docker Scout you must create a docker hub account.
+To use the scout from the command window, log into the hub:
+
+    docker login
+
+then run the scout over your image:
+
+```
+docker scout quickview learnunix
+    ✓ Image stored for indexing
+    ✓ Indexed 319 packages
+
+  Your image  learnunix                   │    0C     0H     3M    44L     2?   
+  Base image  debian:12                   │    0C     0H     0M    17L          
+  Updated base image  debian:stable-slim  │    0C     0H     0M    17L          
+                                          │                                     
+
+What's Next?
+  Learn more about vulnerabilities → docker scout cves learnunix
+  Learn more about base image update recommendations → docker scout recommendations learnunix
+```
+
+The second command "docker scout recommendations" suggests a few changes that will make
+the image a little smaller.
+
+The first command "docker scout cves" runs a vulnerability search.
+It rummages through the version of Linux
+that you installed in the container (Debian Bookwork in this example)
+and all the packages that are installed,
+listing all of the vulnerabilities that have been reported.
+The report is very long.
+Here's the beginning:
+
+```
+docker scout cves learnunix
+    ✓ SBOM of image already cached, 319 packages indexed
+    ✗ Detected 23 vulnerable packages with a total of 48 vulnerabilities
+
+
+## Overview
+
+                    │           Analyzed Image            
+────────────────────┼─────────────────────────────────────
+  Image reference   │  learnunix:latest                   
+                    │  d8c2e3ed40b5                       
+    platform        │ linux/amd64                         
+    vulnerabilities │    0C     0H     3M    44L     2?   
+    size            │ 238 MB                              
+    packages        │ 319                                 
+
+
+## Packages and Vulnerabilities
+
+   0C     0H     3M     0L  linux 6.1.38-2
+pkg:deb/debian/linux@6.1.38-2?os_distro=bookworm&os_name=debian&os_version=12
+
+    ✗ MEDIUM CVE-2020-15802
+      https://scout.docker.com/v/CVE-2020-15802
+      Affected range : >=6.1.15-1  
+      Fixed version  : not fixed   
+    
+    ✗ MEDIUM CVE-2022-38096
+      https://scout.docker.com/v/CVE-2022-38096
+      Affected range : >=6.1.15-1  
+      Fixed version  : not fixed   
+    
+    ✗ MEDIUM CVE-2020-26555
+      https://scout.docker.com/v/CVE-2020-26555
+      Affected range : >=6.1.15-1  
+      Fixed version  : not fixed
+```
 
 
 ## Other Courses
@@ -314,6 +422,7 @@ but the editor it describes is an ancient command-driven tool.
 You will probably learn more by typing "regular expressions" into Google.
 
 The first lesson in the Macros course begins
+
 "WARNING: This course was written for UNIX in 1979, not 1999,
 and has not yet been updated. Some details may be way out of date!"
 
@@ -327,16 +436,18 @@ but the subject is somewhat of a niche.
 ## GIT Bash
 
 If you use Microsoft Windows you need to install git bash to install the learn tool.
-Once you've complete the lessons,
-you will find that they also work
-if you type them into a git bash window
-without running Docker.
-The real purpose of git bash is to add a UNIX-style 
+Actually the real purpose of git bash is to add a UNIX-style 
 command line interface
 to your Windows machine. 
+Once you've complete the lessons
+and typed CTRL and d to come out of the Docker image,
+you will find that the commands that you've learned now work
+on your Windows system if you run them in the git bash window -
+"ls" lists the files in your current directory,
+and so on.
 
-(Pretty much the only command git bash doesn't provide is "learn".
-You need to run the Docker container to get that.)
+The most obvious command that's missing is "learn".
+You need to run the Docker container to get that.
 
 ## Fun With Free Software
 
