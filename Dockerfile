@@ -22,12 +22,15 @@ FROM debian:bookworm
 
 COPY learn.tar /tmp/learn.tar
 
-COPY build.sh /tmp/build.sh
+# Extract the build script and install the learn material.  Originally the build script
+# was in this directory but if this repository is cloned under Windows, any text files 
+# will have CR/LF line endings.  That caused the build script to fail when run due to
+# the junk at the end of the line.  Keeping it in a tar archive protects it from that.
+WORKDIR /tmp
+RUN tar xvf learn.tar learn/bin/build.sh; chmod +x learn/bin/build.sh; learn/bin/build.sh
 
-# Install the software.
-RUN chmod +x /tmp/build.sh; /tmp/build.sh
-
-# Run commands as the user learner
+# Run commands as the user learner in that user's ome directory.
+WORKDIR /home/learner
 USER learner
 
 # The spinner script runs forever doing nothing, which keeps the container running.

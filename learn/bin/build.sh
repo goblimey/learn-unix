@@ -3,6 +3,7 @@
 # Shell script to prepare a docker image to run learn:
 #
 #    update the list used by the apt command
+#    upgrade the system
 #    reinstall the default packages but with manual pages (Docker may exclude them)
 #    install the make tools (make, gcc etc)
 #    create a user to run in the container
@@ -17,6 +18,8 @@
 
 apt update
 
+apt -y upgrade
+
 # Man pages and other documentation may be excluded from the image by default.  Some of
 # the lessons in the learn files course expect man.
 if test -f /etc/dpkg/dpkg.cfg.d/excludes
@@ -29,8 +32,13 @@ then
         rm -r /var/lib/apt/lists/*
 fi
 
-# Install the build tool (gcc etc) plus spell, which some of the lessons expect.
+
+# Install the build tool (gcc etc) plus apt-utils and spell.  If apt-utils is missing
+# we get error messages during the build.  They are harmless but could cause confusion.
+# Some of the lessons use spell but it may be missing by default.
+
 apt install -y apt-utils build-essential man-db spell
+
 
 # Create the user learner in group learner with a home directory and a shell,
 # password locked so nobody can log in from outside the container.
